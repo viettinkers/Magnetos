@@ -1,0 +1,105 @@
+body {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+* {
+	position: relative;
+}
+
+.phone {
+  border-radius: 15px;
+  background: #aaa;
+  display: inline-block;
+  padding: 20px 20px 50px 20px;
+}
+
+.screen {
+  background: #fafafa;
+  display: inline-block;
+  height: 640px;
+  width: 360px;
+}
+
+.guide {
+  padding: 64px 0;
+  text-align: center;
+}
+
+.text-guide {
+  color: #666;
+  display: inline-block;
+  font-size: 40px;
+  max-width: 80%;
+}
+
+.fridge {
+  display: inline-block;
+  margin-top: 60px;
+  position: relative;
+}
+
+.fridge-half {
+	border-radius: 2px;
+	position: relative;
+  border: 3px solid #666; 
+  min-height: 60px;
+  width: 100px;
+}
+
+.fridge-half.lower {
+	height: 90px;
+}
+
+.handle {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  border: 3px solid #666; 
+  height: 16px;
+  width: 0px;
+}
+
+.magneto {
+	background: #333;
+	border-radius: 9px;
+	display: inline-block;
+	height: 18px;
+	width: 18px;
+  position: absolute;	
+}
+
+.magneto.m1 {
+	left: 14px;
+	top: 20px;
+}
+
+.magneto.m2 {
+	left: 40px;
+	top: 20px;
+}
+
+.magneto.m3 {
+	left: 40px;
+	top: 20px;
+}
+
+@keyframes tapping {
+	0% {transform: translate(0,0) rotate(-25deg);}
+	50% {transform: translate(10px,20px) rotate(-25deg);}
+	100% {transform: translate(0,0) rotate(-25deg);}
+}
+
+.cursor {
+	background-image: url('cursor.png');
+	background-size: cover;
+	height: 64px;
+	width: 64px;
+	position: absolute;
+	left: 164px;
+	top: 403px;
+	animation-name: tapping;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease;
+}
