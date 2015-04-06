@@ -96,10 +96,18 @@ body {
 	height: 64px;
 	width: 64px;
 	position: absolute;
-	left: 164px;
-	top: 403px;
+	left: 166px;
+	top: 401px;
 	animation-name: tapping;
 	animation-duration: 3s;
 	animation-iteration-count: infinite;
 	animation-timing-function: ease;
+}
+
+.scene {
+  display: none;
+}
+
+.scene.showing {
+  display: block;
 }
