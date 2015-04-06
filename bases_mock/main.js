@@ -24,7 +24,7 @@ function nextScene(isNext) {
       (currentIndex + numScenes - 1) % numScenes;
   $(allSceneEls[currentIndex]).removeClass('showing');
   $(allSceneEls[nextIndex]).addClass('showing');
-  window.location.search = 'scene=' + nextIndex;
+  // window.location.search = 'scene=' + nextIndex;
 }
 
 function gotoScene(sceneIndex) {

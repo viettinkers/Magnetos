@@ -200,19 +200,26 @@ body {
 
 /* Inventory */
 .inventory {
-  background: #666;
-  color: #eee;
+  background-color: #555;
   font-weight: 300;
-  height: 100%;
+  height: 120%;
   width: 100%;
   position: absolute;
   top: 586px;
 }
 
+.inventory,
+.inventory .entry,
+.inventory .header-row {
+  color: #eee;
+}
+
 .inventory .title {
+  background-color: #666;
   font-size: 32px;
   text-align: center;
   padding: 8px 0;
+  margin-bottom: 16px;
 }
 
 @-webkit-keyframes showingIndicator {
@@ -233,7 +240,7 @@ body {
   position: absolute;
   height: 12px;
   width: 12px;
-  left: 46px;
+  right: 30px;
   top: 22px;
 }
 
@@ -242,4 +249,46 @@ body {
   -webkit-animation-duration: 2s;
   -webkit-animation-fill-mode: forwards;
   -webkit-transition: all 1s ease-in;
+}
+
+.inventory.showing {
+  top: 0;
+}
+
+@-webkit-keyframes showingInventory {
+  0% {
+    top: 586px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+.inventory.showing-ani {
+  -webkit-animation-name: showingInventory;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-transition: top 1s ease-in-out;
+}
+
+.header-row .freshness {
+  padding-left: 16px;
+}
+
+.svg-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.inventory .entry .svg-icon {
+  fill: white;
+  margin: 8px 16px 0 0;
+}
+
+.inventory .entry .delete {
+  background-color: #eee;
+}
+
+.inventory .entry .date {
+  font-size: 18px;
 }
