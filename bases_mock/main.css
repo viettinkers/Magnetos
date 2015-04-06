@@ -95,7 +95,7 @@ body {
 }
 
 .cursor {
-	background-image: url('images/cursor.png');
+	background-image: url('cursor.png');
 	background-size: cover;
 	height: 64px;
 	width: 64px;
