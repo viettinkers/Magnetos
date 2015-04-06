@@ -5,6 +5,9 @@ body {
 
 * {
 	position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .phone {
@@ -19,6 +22,7 @@ body {
   display: inline-block;
   height: 640px;
   width: 360px;
+  overflow: hidden;
 }
 
 .guide {
@@ -84,10 +88,10 @@ body {
 	top: 20px;
 }
 
-@keyframes tapping {
-	0% {transform: translate(0,0) rotate(-25deg);}
-	50% {transform: translate(10px,20px) rotate(-25deg);}
-	100% {transform: translate(0,0) rotate(-25deg);}
+@-webkit-keyframes tapping {
+	0% {-webkit-transform: translate(0,0) rotate(-25deg);}
+	50% {-webkit-transform: translate(10px,20px) rotate(-25deg);}
+	100% {-webkit-transform: translate(0,0) rotate(-25deg);}
 }
 
 .cursor {
@@ -98,16 +102,144 @@ body {
 	position: absolute;
 	left: 166px;
 	top: 401px;
-	animation-name: tapping;
-	animation-duration: 3s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease;
+	-webkit-animation-name: tapping;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease;
 }
 
 .scene {
   display: none;
+  padding-top: 32px;
+  text-align: left;
+  height: 100%;
 }
 
 .scene.showing {
   display: block;
+}
+
+.scene1 {
+  padding-top: 0;
+  text-align: center;
+}
+
+.entry {
+  color: #333;
+  padding: 16px 32px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.entry .checkbox {
+  border: 3px solid #aaa;
+  border-radius: 6px;
+  display: inline-block;
+  height: 36px;
+  width: 36px;
+  margin-right: 16px;
+  -webkit-transition: all 0.25ms ease;
+}
+
+@-webkit-keyframes showingChecked {
+  0% {background-color: rgba(102, 102, 102, 0);}
+  100% {background-color: rgba(102, 102, 102, 255);}
+}
+
+.entry .checkbox.checked {
+  -webkit-animation-name: showingChecked;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease;
+}
+
+@-webkit-keyframes removingEntry {
+  0% {-webkit-transform: translate(0, 0);}
+  50% {-webkit-transform: translate(0, 0); opacity: 1; }
+  100% {-webkit-transform: translate(0, 80%); opacity: 0; }
+}
+
+.scene4 .entry.to-be-removed {
+  -webkit-animation-name: removingEntry;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-fill-mode: forwards;
+}
+
+.entry .description {
+  display: inline-block;
+  font-size: 32px;
+  margin-top: 3px;
+  vertical-align: top;
+}
+
+.entry .delete {
+  background-color: #666;
+  border-radius: 3px;
+  height: 6px;
+  width: 6px;
+  float: right;
+  vertical-align: top;
+  margin: 20px 3px 0 0;
+}
+
+.header-row {
+  color: #666;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.header-row .done {
+  padding-left: 16px;
+}
+
+.header-row .remove {
+  float: right;
+  padding-right: 16px;
+}
+
+
+/* Inventory */
+.inventory {
+  background: #666;
+  color: #eee;
+  font-weight: 300;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 586px;
+}
+
+.inventory .title {
+  font-size: 32px;
+  text-align: center;
+  padding: 8px 0;
+}
+
+@-webkit-keyframes showingIndicator {
+  0% {
+    -webkit-transform: scale(0, 0);
+  }
+  66% {
+    -webkit-transform: scale(0, 0);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+  }
+}
+
+.inventory .indicator {
+  background-color: #eee;
+  border-radius: 6px;
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  left: 46px;
+  top: 22px;
+}
+
+.inventory.showing-indicator .indicator {
+  -webkit-animation-name: showingIndicator;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-transition: all 1s ease-in;
 }
