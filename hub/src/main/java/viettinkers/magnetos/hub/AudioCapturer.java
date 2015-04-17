@@ -1,4 +1,4 @@
-package viettinkers.magnetos;
+package viettinkers.magnetos.hub;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

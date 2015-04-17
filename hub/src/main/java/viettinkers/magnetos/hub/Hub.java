@@ -1,4 +1,4 @@
-package viettinkers.magnetos;
+package viettinkers.magnetos.hub;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,12 +23,15 @@ import com.rapplogic.xbee.api.zigbee.ZNetRxIoSampleResponse;
 public class Hub {
 
   // XBee configurations.
-  private static final String USB_PORT = "COM5";
+  private static final String USB_PORT = "/dev/ttyUSB1";
   private static final String LOG_PROP_PATH = "log4j.properties";
 
   // Magneto mapping.
   private static final String MAGNETO_FOOD_ADDR = "TBD";
   private static final String MAGNETO_FOOD_ASK_ADDR = "0x00,0x13,0xa2,0x00,0x40,0xd8,0x5f,0xcf";
+
+  // Resources.
+  private static final String WYN_SOUND_FILE = "/sound/whatdoyouneed.wav";
 
   private XBee xbee;
 
@@ -61,15 +64,10 @@ public class Hub {
    */
   private void handleXBeeResponse(ZNetRxIoSampleResponse ioSample) {
     String magnetoAddress = ioSample.getRemoteAddress64().toString();
-    switch (magnetoAddress) {
-      case MAGNETO_FOOD_ADDR:
-        handleFoodMagneto(ioSample.isD0On());
-        break;
-      case MAGNETO_FOOD_ASK_ADDR:
+    if (magnetoAddress.equals(MAGNETO_FOOD_ADDR)) {
+	    handleFoodMagneto(ioSample.isD0On());
+    } else if (magnetoAddress.equals(MAGNETO_FOOD_ASK_ADDR)) {
         handleFoodAskMagneto(ioSample.isD0On());
-        break;
-      default:
-        break;
     }
   }
 
@@ -97,8 +95,7 @@ public class Hub {
   private void handleFoodAskMagneto(boolean isReleased) {
     if (isReleased) {
       try {
-        String gongFile = "whatdoyouneed.wav";
-        InputStream in = new FileInputStream(gongFile);
+        InputStream in = getClass().getResourceAsStream(WYN_SOUND_FILE);
         AudioStream audioStream = new AudioStream(in);
         AudioPlayer.player.start(audioStream);
       } catch (IOException ex) {
